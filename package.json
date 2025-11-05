@@ -1,7 +1,7 @@
 {
   "name": "lab-product-dashboard",
   "version": "1.0.0",
-  "description": "A dynamic product dashboard built with React.",
+  "description": "A dynamic product dashboard built with React, demonstrating component-based architecture and state management.",
   "main": "src/main.jsx",
   "private": true,
   "type": "module",
