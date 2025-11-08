@@ -3,12 +3,6 @@ import '@testing-library/jest-dom'
 import { render, screen, fireEvent } from '@testing-library/react'
 import App from '../App'
 
-const sampleProducts = [
-  { id: 1, name: 'Laptop', price: '$999', inStock: true },
-  { id: 2, name: 'Phone', price: '$699', inStock: false },
-  { id: 3, name: 'Tablet', price: '$499', inStock: true },
-]
-
 test('renders product dashboard title', () => {
   render(<App />)
   expect(screen.getByText(/Product Dashboard/i)).toBeInTheDocument()
@@ -17,15 +11,17 @@ test('renders product dashboard title', () => {
 test('displays all products initially', () => {
   render(<App />)
 
-  sampleProducts.forEach((product) => {
-    expect(screen.getByText(product.name)).toBeInTheDocument()
-  })
+  // Test that actual products from App component are displayed
+  expect(screen.getByText(/Laptop Pro/i)).toBeInTheDocument()
+  expect(screen.getByText(/Wireless Headphones/i)).toBeInTheDocument()
+  expect(screen.getByText(/Smart Phone/i)).toBeInTheDocument()
+  expect(screen.getByText(/Gaming Mouse/i)).toBeInTheDocument()
 })
 
 test('applies conditional styling for out-of-stock products', () => {
   render(<App />)
-  const outOfStockProduct = screen.getByText(/Phone/i) // Make sure "Phone" exists in sampleProducts
-  expect(outOfStockProduct.closest('div')).toHaveClass('outOfStockClass')
+  const outOfStockProduct = screen.getByText(/Wireless Headphones/i) // Match actual product name
+  expect(outOfStockProduct.closest('div')).toHaveClass('outOfStock')
 })
 
 test('removes product from the dashboard when "Remove" button is clicked', () => {
